@@ -4,51 +4,51 @@ namespace ByteBank
 {
     public class ContaCorrente
     {
-        public Cliente titular;
+        public Cliente Titular { get; set; }
+
         public int agencia;
         public int numero;
-        private double saldo = 100;
+        private double _saldo = 100;
 
-        public double GetSaldo()
+        public double Saldo
         {
-            return saldo;
-        }
-
-        public void SetSaldo(double saldo)
-        {
-            if (saldo <= 0)
+            get { return _saldo; }
+            set
             {
-                return; // Lançar Erro
-            }
+                if (value <= 0)
+                {
+                    return; // Lançar Erro
+                }
 
-            this.saldo = saldo;
+                _saldo = value;
+            }
         }
 
         public bool Sacar(double valor)
         {
 
-            if (saldo < valor)
+            if (_saldo < valor)
             {
                 return false;
             }
 
-            saldo -= valor;
+            _saldo -= valor;
             return true;
         }
 
         public void Depositar(double valor)
         {
-            saldo += valor;
+            _saldo += valor;
         }
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (saldo < valor)
+            if (_saldo < valor)
             {
                 return false;
             }
 
-            saldo -= valor;
+            _saldo -= valor;
             contaDestino.Depositar(valor);
             return true;
         }
