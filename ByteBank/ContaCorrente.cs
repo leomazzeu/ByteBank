@@ -7,33 +7,48 @@ namespace ByteBank
         public Cliente titular;
         public int agencia;
         public int numero;
-        public double saldo;
+        private double saldo = 100;
+
+        public double GetSaldo()
+        {
+            return saldo;
+        }
+
+        public void SetSaldo(double saldo)
+        {
+            if (saldo <= 0)
+            {
+                return; // Lançar Erro
+            }
+
+            this.saldo = saldo;
+        }
 
         public bool Sacar(double valor)
         {
 
-            if (this.saldo < valor)
+            if (saldo < valor)
             {
                 return false;
             }
 
-            this.saldo -= valor;
+            saldo -= valor;
             return true;
         }
 
         public void Depositar(double valor)
         {
-            this.saldo += valor;
+            saldo += valor;
         }
 
         public bool Transferir(double valor, ContaCorrente contaDestino)
         {
-            if (this.saldo < valor)
+            if (saldo < valor)
             {
                 return false;
             }
 
-            this.saldo -= valor;
+            saldo -= valor;
             contaDestino.Depositar(valor);
             return true;
         }
