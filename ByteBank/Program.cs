@@ -12,7 +12,7 @@ namespace ByteBank
         {
 
             Cliente conta = new Cliente();
-            ContaCorrente cliente = new ContaCorrente();
+            ContaCorrente cliente = new ContaCorrente(101, 8746375);
 
             conta.Nome = "Leonardo";
             conta.Profissao = "Programador";
@@ -23,6 +23,9 @@ namespace ByteBank
 
             Console.WriteLine(cliente.Titular.Nome);
             Console.WriteLine(cliente.Saldo);
+
+            Console.WriteLine(cliente.Agencia);
+            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
 
             Console.ReadLine();
 
