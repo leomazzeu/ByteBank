@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ByteBank.Funcionarios;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,22 +11,33 @@ namespace ByteBank
     {
         static void Main(string[] args)
         {
+            GerenciadorBonificacao gerenciador = new GerenciadorBonificacao();
 
-            Cliente conta = new Cliente();
-            ContaCorrente cliente = new ContaCorrente(101, 8746375);
+            Funcionario carlos = new Funcionario();
+            carlos.Nome = "Carlos";
+            carlos.CPF = "123.123.123-32";
+            carlos.Salario = 2000;
+            gerenciador.Registrar(carlos);
 
-            conta.Nome = "Leonardo";
-            conta.Profissao = "Programador";
-            conta.CPF = "123.123.123-12";
+            Diretor elisa = new Diretor();
+            elisa.Nome = "Elisa";
+            elisa.CPF = "123.123.123-44";
+            elisa.Salario = 5000;
+            gerenciador.Registrar(elisa);
 
-            cliente.Saldo = -10;
-            cliente.Titular = conta;
+            Console.WriteLine(carlos.Nome);
+            Console.WriteLine(carlos.CPF);
+            Console.WriteLine(carlos.Salario);
+            Console.WriteLine(carlos.GetBonificacao());
 
-            Console.WriteLine(cliente.Titular.Nome);
-            Console.WriteLine(cliente.Saldo);
+            Console.WriteLine(elisa.Nome);
+            Console.WriteLine(elisa.CPF);
+            Console.WriteLine(elisa.Salario);
+            Console.WriteLine(elisa.GetBonificacao());
 
-            Console.WriteLine(cliente.Agencia);
-            Console.WriteLine(ContaCorrente.TotalDeContasCriadas);
+            Console.WriteLine("Total de bonificações: " + gerenciador.GetTotalBonificacao());
+
+            Console.WriteLine("Total de funcionários: " + Funcionario.TotalDeFuncionarios);
 
             Console.ReadLine();
 
