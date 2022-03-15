@@ -8,7 +8,7 @@ namespace ByteBank.Funcionarios
 {
     public class Diretor : Funcionario
     {
-        public Diretor(int salario, string cpf) : base(5000, cpf)
+        public Diretor(string cpf) : base(5000, cpf)
         {
             Console.WriteLine("Construtor do Diretor");
         }
